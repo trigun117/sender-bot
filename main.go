@@ -48,7 +48,7 @@ func main() {
 		defer runtime.GC()
 		fetchFreshProxy()
 		pp := strings.Join(p.Proxies, "\n")
-		msg := tgbotapi.NewMessageToChannel(channelName, fmt.Sprintf("Total proxy: %s\n Proxy: %s", strconv.Itoa(len(p.Proxies)), pp))
+		msg := tgbotapi.NewMessageToChannel(channelName, fmt.Sprintf("Total socks5 proxies: %s\nProxies:\n%s", strconv.Itoa(len(p.Proxies)), pp))
 		bot.Send(msg)
 		to, _ := strconv.Atoi(t)
 		d := time.Duration(to)
