@@ -21,6 +21,11 @@ var (
 	t           = os.Getenv("TO")
 	token       = os.Getenv("TN")
 	channelName = os.Getenv("CN")
+	mtserver    = os.Getenv("MTSV")
+	mtport      = os.Getenv("MTP")
+	mtsecret    = os.Getenv("MTSE")
+	mtlink      = os.Getenv("MTL")
+	site        = os.Getenv("ST")
 )
 
 var p proxy
@@ -48,11 +53,12 @@ func main() {
 		defer runtime.GC()
 		fetchFreshProxy()
 		pp := strings.Join(p.Proxies, "\n")
-		msg := tgbotapi.NewMessageToChannel(channelName, fmt.Sprintf("Total socks5 proxies: %s\nProxies:\n%s", strconv.Itoa(len(p.Proxies)), pp))
+		msg := tgbotapi.NewMessageToChannel(channelName, fmt.Sprintf("MTProto Proxy\nServer: %s\nPort: %s\nSecret: %s\nLink: %s\n\nTotal socks5 proxies: %s\nProxies:\n%s", mtserver, mtport, mtsecret, mtlink, strconv.Itoa(len(p.Proxies)), pp))
+		kb := tgbotapi.NewInlineKeyboardMarkup(tgbotapi.NewInlineKeyboardRow(tgbotapi.NewInlineKeyboardButtonURL("Open site", site), tgbotapi.NewInlineKeyboardButtonURL("Open Bot", "https://t.me/tproxies_bot"), tgbotapi.NewInlineKeyboardButtonURL("Enable MTProto", mtlink)))
+		msg.ReplyMarkup = &kb
 		bot.Send(msg)
 		to, _ := strconv.Atoi(t)
 		d := time.Duration(to)
 		time.Sleep(d * time.Second)
 	}
-
 }
