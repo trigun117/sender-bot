@@ -59,6 +59,6 @@ func main() {
 		bot.Send(msg)
 		to, _ := strconv.Atoi(t)
 		d := time.Duration(to)
-		time.Sleep(d * time.Minute)
+		time.Sleep(d * time.Hour)
 	}
 }
