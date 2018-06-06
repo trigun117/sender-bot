@@ -53,7 +53,7 @@ func main() {
 		defer runtime.GC()
 		fetchFreshProxy()
 		pp := strings.Join(p.Proxies, "\n")
-		msg := tgbotapi.NewMessageToChannel(channelName, fmt.Sprintf("MTProto Proxy\nServer: %s\nPort: %s\nSecret: %s\nLink: %s\n\nTotal socks5 proxies: %s\nProxies:\n%s", mtserver, mtport, mtsecret, mtlink, strconv.Itoa(len(p.Proxies)), pp))
+		msg := tgbotapi.NewMessageToChannel(channelName, fmt.Sprintf("MTProto Proxy\nServer: %s\nPort: %s\nSecret: %s\nLink: %s\n\nTotal socks5 proxies: %s\nProxies:\n%s\n\nShare with friends, contacts, social networks", mtserver, mtport, mtsecret, mtlink, strconv.Itoa(len(p.Proxies)), pp))
 		kb := tgbotapi.NewInlineKeyboardMarkup(tgbotapi.NewInlineKeyboardRow(tgbotapi.NewInlineKeyboardButtonURL("Enable MTProto", mtlink), tgbotapi.NewInlineKeyboardButtonURL("Open site", site), tgbotapi.NewInlineKeyboardButtonURL("Open Bot", "https://t.me/tproxies_bot")))
 		msg.ReplyMarkup = &kb
 		bot.Send(msg)
