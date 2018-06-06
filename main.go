@@ -37,8 +37,8 @@ type proxy struct {
 func fetchFreshProxy() (err error) {
 	re, _ := http.PostForm(link, url.Values{field: {password}})
 	b, _ := ioutil.ReadAll(re.Body)
+	defer re.Body.Close()
 	json.Unmarshal(b, &p)
-	re.Body.Close()
 	return
 }
 
@@ -59,6 +59,6 @@ func main() {
 		bot.Send(msg)
 		to, _ := strconv.Atoi(t)
 		d := time.Duration(to)
-		time.Sleep(d * time.Second)
+		time.Sleep(d * time.Minute)
 	}
 }
