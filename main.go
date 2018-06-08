@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
-	"runtime"
+	// "runtime"
 	"strconv"
 	"strings"
 	"time"
@@ -50,7 +50,7 @@ func main() {
 	}
 
 	for {
-		defer runtime.GC()
+		// defer runtime.GC()
 		fetchFreshProxy()
 		pp := strings.Join(p.Proxies, "\n")
 		msg := tgbotapi.NewMessageToChannel(channelName, fmt.Sprintf("MTProto Proxy\nServer: %s\nPort: %s\nSecret: %s\nLink: %s\n\nTotal socks5 proxies: %s\nProxies:\n%s\n\nShare with friends, contacts, social networks", mtserver, mtport, mtsecret, mtlink, strconv.Itoa(len(p.Proxies)), pp))
