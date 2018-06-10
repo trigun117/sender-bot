@@ -1,1 +1,2 @@
+[![Build Status](https://travis-ci.com/trigun117/sender-bot.svg?branch=master)](https://travis-ci.com/trigun117/sender-bot) [![codecov](https://codecov.io/gh/trigun117/sender-bot/branch/master/graph/badge.svg)](https://codecov.io/gh/trigun117/sender-bot) [![Go Report Card](https://goreportcard.com/badge/github.com/trigun117/sender-bot)](https://goreportcard.com/report/github.com/trigun117/sender-bot)
 # sender-bot

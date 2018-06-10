@@ -22,17 +22,21 @@ var (
 )
 
 func bot() {
+	// creating bot
 	bot, err := tgbotapi.NewBotAPI(token)
 	if err != nil {
 		panic("Invalid Token")
 	}
 
 	for {
+
 		fetchFreshProxy()
 		joinedProxies := strings.Join(proxy.Proxies, "\n")
 
+		// creating message with text and proxies
 		message := tgbotapi.NewMessageToChannel(channelName, fmt.Sprintf("MTProto Proxy\nServer: %s\nPort: %s\nSecret: %s\nLink: %s\n\nTotal socks5 proxies: %s\nProxies:\n%s\n\nShare with friends, contacts, social networks", mtserver, mtport, mtsecret, mtlink, strconv.Itoa(len(proxy.Proxies)), joinedProxies))
 
+		// creating inline keyboard
 		keyboard := tgbotapi.NewInlineKeyboardMarkup(tgbotapi.NewInlineKeyboardRow(tgbotapi.NewInlineKeyboardButtonURL("Enable MTProto", mtlink), tgbotapi.NewInlineKeyboardButtonURL("Open site", site), tgbotapi.NewInlineKeyboardButtonURL("Open Bot", "https://t.me/tproxies_bot")))
 
 		message.ReplyMarkup = &keyboard
