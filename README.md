@@ -10,10 +10,10 @@ This is a telegram bot which fetch json with proxies and send to channel
 
 For start using bot, build docker image from Dockerfile and run with this command
 ```
-sudo docker run -d \
--e URL=site_url \
--e PASS=password \
--e FI=filed_name \
+docker run -d \
+-e URL=site_json_url \
+-e PASS=site_json_password \
+-e FI=site_json_field \
 -e TO=sleep_time \
 -e TN=bot_token \
 -e CN=channel_name \
@@ -21,7 +21,7 @@ sudo docker run -d \
 -e MTP=mtproto_port \
 -e MTSE=mtproto_secret \
 -e MTL=mtproto_link \
--e ST=site \
+-e ST=site_url \
 --restart always \
 image_name
 ```
