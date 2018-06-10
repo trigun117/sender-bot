@@ -1,11 +1,11 @@
-package main
+package fetcher
 
 import (
 	"testing"
 )
 
 func TestFetchFreshProxy(t *testing.T) {
-	if err := fetchFreshProxy(); err != nil {
+	if err := FetchFreshProxy(); err != nil {
 		t.Fail()
 	}
 }

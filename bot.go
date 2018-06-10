@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/go-telegram-bot-api/telegram-bot-api"
+	"github.com/trigun117/sender-bot/fetcher"
 	"os"
 	"runtime"
 	"strconv"
@@ -30,11 +31,11 @@ func bot() {
 
 	for {
 
-		fetchFreshProxy()
-		joinedProxies := strings.Join(proxy.Proxies, "\n")
+		fetcher.FetchFreshProxy()
+		joinedProxies := strings.Join(fetcher.Proxy.Proxies, "\n")
 
 		// creating message with text and proxies
-		message := tgbotapi.NewMessageToChannel(channelName, fmt.Sprintf("MTProto Proxy\nServer: %s\nPort: %s\nSecret: %s\nLink: %s\n\nTotal socks5 proxies: %s\nProxies:\n%s\n\nShare with friends, contacts, social networks", mtserver, mtport, mtsecret, mtlink, strconv.Itoa(len(proxy.Proxies)), joinedProxies))
+		message := tgbotapi.NewMessageToChannel(channelName, fmt.Sprintf("MTProto Proxy\nServer: %s\nPort: %s\nSecret: %s\nLink: %s\n\nTotal socks5 proxies: %s\nProxies:\n%s\n\nShare with friends, contacts, social networks", mtserver, mtport, mtsecret, mtlink, strconv.Itoa(len(fetcher.Proxy.Proxies)), joinedProxies))
 
 		// creating inline keyboard
 		keyboard := tgbotapi.NewInlineKeyboardMarkup(tgbotapi.NewInlineKeyboardRow(tgbotapi.NewInlineKeyboardButtonURL("Enable MTProto", mtlink), tgbotapi.NewInlineKeyboardButtonURL("Open site", site), tgbotapi.NewInlineKeyboardButtonURL("Open Bot", "https://t.me/tproxies_bot")))

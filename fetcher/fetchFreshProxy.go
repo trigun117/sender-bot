@@ -1,4 +1,4 @@
-package main
+package fetcher
 
 import (
 	"encoding/json"
@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-var proxy Proxy
+var Proxy ProxyS
 
 var (
 	link     = os.Getenv("URL")
@@ -16,16 +16,16 @@ var (
 	password = os.Getenv("PASS")
 )
 
-// Proxy struct which contain proxies
-type Proxy struct {
+// ProxyS struct which contain proxies
+type ProxyS struct {
 	Proxies []string
 }
 
-// fetchFreshProxy fetching json with proxies and unmarshal it to struct
-func fetchFreshProxy() (err error) {
+// FetchFreshProxy fetching json with proxies and unmarshal it to struct
+func FetchFreshProxy() (err error) {
 	response, _ := http.PostForm(link, url.Values{field: {password}})
 	body, _ := ioutil.ReadAll(response.Body)
 	defer response.Body.Close()
-	json.Unmarshal(body, &proxy)
+	json.Unmarshal(body, &Proxy)
 	return
 }
