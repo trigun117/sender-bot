@@ -8,6 +8,7 @@ import (
 	"os"
 )
 
+// Proxy contain unmarshaled proxies
 var Proxy ProxyS
 
 var (
