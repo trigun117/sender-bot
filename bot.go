@@ -38,7 +38,7 @@ func bot() {
 		message := tgbotapi.NewMessageToChannel(channelName, fmt.Sprintf("MTProto Proxy\nServer: %s\nPort: %s\nSecret: %s\nLink: %s\n\nTotal socks5 proxies: %s\nProxies:\n%s\n\nShare with friends, contacts, social networks", mtserver, mtport, mtsecret, mtlink, strconv.Itoa(len(fetcher.Proxy.Proxies)), joinedProxies))
 
 		// creating inline keyboard
-		keyboard := tgbotapi.NewInlineKeyboardMarkup(tgbotapi.NewInlineKeyboardRow(tgbotapi.NewInlineKeyboardButtonURL("Enable MTProto \xE2\x93\x82", mtlink), tgbotapi.NewInlineKeyboardButtonURL("Open site \xF0\x9F\x8C\x90", site), tgbotapi.NewInlineKeyboardButtonURL("Open Bot \xF0\x9F\xA4\x96", "https://t.me/tproxies_bot")))
+		keyboard := tgbotapi.NewInlineKeyboardMarkup(tgbotapi.NewInlineKeyboardRow(tgbotapi.NewInlineKeyboardButtonURL("Enable MTProto \xE2\x93\x82", mtlink)), tgbotapi.NewInlineKeyboardRow(tgbotapi.NewInlineKeyboardButtonURL("Open site \xF0\x9F\x8C\x90", site)), tgbotapi.NewInlineKeyboardRow(tgbotapi.NewInlineKeyboardButtonURL("Open Bot \xF0\x9F\xA4\x96", "https://t.me/tproxies_bot")))
 
 		message.ReplyMarkup = &keyboard
 		bot.Send(message)
