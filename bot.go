@@ -5,7 +5,6 @@ import (
 	"github.com/go-telegram-bot-api/telegram-bot-api"
 	"github.com/trigun117/sender-bot/fetcher"
 	"os"
-	"runtime"
 	"strconv"
 	"strings"
 	"time"
@@ -30,7 +29,10 @@ func bot() {
 		panic("Invalid Token")
 	}
 
-	for {
+	st, _ := strconv.Atoi(sleepTime)
+	duration := time.Duration(st)
+
+	for t := time.Tick(duration * time.Hour); ; <-t {
 
 		fetcher.FetchFreshProxy()
 		joinedProxies := strings.Join(fetcher.Proxy.Proxies, "\n")
@@ -43,11 +45,5 @@ func bot() {
 
 		message.ReplyMarkup = &keyboard
 		bot.Send(message)
-
-		runtime.GC()
-
-		st, _ := strconv.Atoi(sleepTime)
-		duration := time.Duration(st)
-		time.Sleep(duration * time.Hour)
 	}
 }
